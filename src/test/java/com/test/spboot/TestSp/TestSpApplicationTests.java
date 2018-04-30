@@ -1,5 +1,7 @@
 package com.test.spboot.TestSp;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,4 +15,9 @@ public class TestSpApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void testSample() {
+		assertEquals("madhu","reddy");
+	}
+	
 }
