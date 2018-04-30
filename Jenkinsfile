@@ -24,7 +24,7 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'm3') {
-                    sh 'mvn deploy'
+                    sh 'java -jar */target/TestSp-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
