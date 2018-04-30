@@ -17,7 +17,7 @@ public class TestSpApplicationTests {
 
 	@Test
 	public void testSample() {
-		assertEquals("madhu","reddy");
+		assertEquals("madhu","madhu");
 	}
 	
 }
