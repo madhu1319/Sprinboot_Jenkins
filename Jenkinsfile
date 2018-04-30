@@ -24,7 +24,7 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'm3') {
-                    sh 'java -jar "*/TestSp-0.0.1-SNAPSHOT.jar"'
+                    sh 'java -jar "C:\Program Files (x86)\Jenkins\workspace\First-Jenkins-Proj\target\TestSp-0.0.1-SNAPSHOT.jar"'
                 }
             }
         }
