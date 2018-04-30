@@ -1,12 +1,6 @@
 pipeline {
     agent any
-    
-    node('windows') {
-    withEnv('PATH+some=C:\\Program Files\\Git\\bin') {
-        // ...
-    }
-}
-
+ 
     stages {
         stage ('Compile Stage') {
 
