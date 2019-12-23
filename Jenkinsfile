@@ -24,6 +24,7 @@ pipeline {
         stage ('Deploy') {
              steps {
            sh "docker ps"
+           sh "docker --version"
              }
              }
     }
