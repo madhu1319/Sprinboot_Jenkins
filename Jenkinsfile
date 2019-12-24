@@ -53,5 +53,14 @@ pipeline{
       }
       
     }
+    
+      stage('Deploy In Another'){
+    
+      steps{
+        sh "sshpass -p 'Madhu@123456' ssh -o ConnectTimeout=3000 -o StrictHostKeyChecking=no -o RequestTTY=no madhu1319@51.144.238.131 " docker ps""
+        echo "Application Started in another"
+      }
+      
+    }
   }
 }
