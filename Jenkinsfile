@@ -5,6 +5,13 @@ def USERNAME="madhu1319"
 def HTTP_PORT="8086"
 def PASSWORD="may28th@MS"
 
+def remote = [:]
+  remote.name = 'AuzreVM'
+  remote.host = '51.144.238.131'
+  remote.user = 'madhu1319'
+  remote.password = 'Madhu@123456'
+  remote.allowAnyHosts = true
+
 node {
 
     stage('Initialize'){
@@ -36,6 +43,11 @@ node {
 
     stage('Run App'){
         runApp(IMAGE_NAME,CONTAINER_NAME, CONTAINER_TAG, USERNAME, HTTP_PORT)
+    }
+    
+    stage('In Other Server'){
+    sshCommand remote: remote, command: "ls -lrt"
+    sshCommand remote: remote, command: "docker ps"
     }
 
 }
