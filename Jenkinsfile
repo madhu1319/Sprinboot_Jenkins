@@ -46,8 +46,8 @@ node {
     }
     
     stage('In Other Server'){
-    sshCommand remote: remote, command: "ls -lrt"
-    sshCommand remote: remote, command: "docker ps"
+    sshCommand remote: remote, sudo: true, command: "ls -lrt"
+    sshCommand remote: remote, sudo: true, command: "docker ps"
     }
 
 }
