@@ -24,6 +24,16 @@ pipeline{
       
     }
     
+    stage('Prune Image'){
+    
+      steps{
+        sh "docker stop somi-test-jenkins"
+        sh "docker image prune -f"
+        echo "Old Image deleted from local"
+      }
+      
+    }
+    
     stage('Build Image'){
     
       steps{
@@ -33,11 +43,23 @@ pipeline{
       
     }
     
+    stage('Push Image'){
+    
+      steps{
+        sh "docker login -u madhu1319 -p may28th@MS"
+        sh "docker tag somi-jenkins-spring-docker:latest madhu1319/somi-jenkins-spring-docker:latest"
+        sh "docker push madhu1319/somi-jenkins-spring-docker:latest"
+        echo "Image Push complete"
+      }
+      
+    }
+    
     stage('Deploy'){
     
       steps{
+        sh "docker pull madhu1319/somi-jenkins-spring-docker:latest"
         sh "docker run -d --rm -p 8086:8086 --name somi-test-jenkins somi-jenkins-spring-docker"
-        echo "Deployment Completed"
+        echo "Application Started on port : 8086"
       }
       
     }
