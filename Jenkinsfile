@@ -5,22 +5,26 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                echo "Compile Step"
+                withMaven(maven : 'm3') {
+                    sh 'mvn clean install'
+                }
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                echo "Testing Step"
+                withMaven(maven : 'm3') {
+                    sh 'mvn test'
+                }
             }
         }
 
 
         stage ('Deploy') {
              steps {
-           sh "docker ps"
-           sh "docker --version"
+           sh "docker build -t somi-jenkins-spring-docker:latest  -t somi-jenkins-spring-docker --pull --no-cache ."
+    		echo "Image build complete"
              }
              }
     }
