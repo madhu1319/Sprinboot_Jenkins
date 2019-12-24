@@ -47,7 +47,11 @@ node {
     
     stage('In Other Server'){
     sshCommand remote: remote, sudo: true, command: "ls -lrt"
-    sshCommand remote: remote, sudo: true, command: "docker ps"
+    sshCommand remote: remote, sudo: true, command: "docker stop CONTAINER_NAME"
+    sshCommand remote: remote, sudo: true, command: "docker image prune -f"
+    sshCommand remote: remote, sudo: true, command: "docker login -u USERNAME -p PASSWORD"
+    sshCommand remote: remote, sudo: true, command: "docker pull USERNAME/IMAGE_NAME"
+    sshCommand remote: remote, sudo: true, command: "docker run -d --rm -p HTTP_PORT:HTTP_PORT --name CONTAINER_NAME USERNAME/IMAGE_NAME:CONTAINER_TAG"
     }
 
 }
