@@ -8,22 +8,12 @@ pipeline{
     
       steps{
         withMaven(maven: 'm3'){
-          sh 'mvn clean install'
+          sh 'mvn clean install -Dmaven.test.skip=true'
         }
       }
       
     }
-    
-    stage('Testing Stage'){
-    
-      steps{
-        withMaven(maven: 'm3'){
-          sh 'mvn test'
-        }
-      }
       
-    }
-    
     stage('Prune Image'){
     
       steps{
