@@ -24,7 +24,7 @@ node {
         checkout scm
     }
 
-    stage('Build'){
+    stage('Build Code'){
         sh "mvn clean install -Dmaven.test.skip=true"
     }
 
@@ -41,11 +41,11 @@ node {
  
     }
 
-    stage('Run App'){
+    stage('Run App in Same VM'){
         runApp(IMAGE_NAME,CONTAINER_NAME, CONTAINER_TAG, USERNAME, HTTP_PORT)
     }
     
-    stage('In Other Server'){
+    stage('Run App in Other VM'){
     sshCommand remote: remote, sudo: true, command: "ls -lrt"
     sshCommand remote: remote, sudo: true, command: "docker stop $CONTAINER_NAME"
     sshCommand remote: remote, sudo: true, command: "docker image prune -f"
